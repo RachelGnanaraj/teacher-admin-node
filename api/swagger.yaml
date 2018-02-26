@@ -1,0 +1,161 @@
+swagger: '2.0'
+info:
+  version: "1.0.1"
+  title: teacher-admin-apis
+  description: This is a set of endpoints for teachers to perform administrative functions for their classes.
+host: localhost:3000
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+basePath: /
+paths:
+  
+  # This is a path endpoint. Change it.
+  /api/register:
+    post:
+      summary: Register Students
+      description: |
+         Register one or more students to a specified teacher.
+      operationId: "registerStud"   
+      parameters:
+        - name: teacher 
+          in: body
+          description: register students
+          required: true
+          schema:
+            $ref: '#/definitions/Teacher'
+          
+      responses:
+        200:
+          description: Successful response
+          schema:
+              title: Return String
+              type: string
+              example: "Succesfully Registered"
+        500:
+          description: Error
+          schema: 
+            type: string
+            example: "Could not register Students"
+      x-swagger-router-controller: "Default"      
+  /api/commonstudents:  
+    post:
+      summary: Common Students
+      description: |
+         List of teachers and retrieve a list of students common to all of them.
+      operationId: "commonStud"    
+      parameters:
+        - name: teacher 
+          in: body
+          description: Provide a list of teachers
+          required: true
+          schema:
+            $ref: '#/definitions/Teachers'   
+      responses:
+        200:
+          description: Successful response
+          schema:
+              title: Return String
+              type: string
+              example: "List of Common Students"
+        500:
+          description: Error
+          schema: 
+            type: string
+            example: "Could not get Students"
+      x-swagger-router-controller: "Default"      
+  /api/suspend:
+    post:
+      summary: Suspend Students
+      description: |
+         Able to suspend a specified student.
+      operationId: "suspendStud"    
+      parameters:
+        - name: student 
+          in: body
+          description: suspended student
+          required: true
+          schema:
+            $ref: '#/definitions/Student'   
+      responses:
+        200:
+          description: Successful response
+          schema:
+              title: Return String
+              type: string
+              example: "List of Common Students"
+        500:
+          description: Error
+          schema: 
+            type: string
+            example: "Could not get Students"  
+      x-swagger-router-controller: "Default"             
+
+  /api/retrievefornotifications:
+    post:
+      summary: Receiving Notifications
+      description: |
+         Retrieve students email that can receive notifications from a teacher.
+      operationId: "retrieveStud"    
+      parameters:
+        - name: teacher 
+          in: body
+          description: retrieve students email
+          required: true
+          schema:
+            $ref: '#/definitions/Teacher'
+          
+      responses:
+        200:
+          description: Successful response
+          schema:
+              title: Return String
+              type: string
+              example: "Succesfully Registered"
+        500:
+          description: Error
+          schema: 
+            type: string
+            example: "Could not register Students"
+      x-swagger-router-controller: "Default"      
+definitions:
+  Teacher:
+    description: Teacher object
+    properties:
+      teacher:
+        type: string
+        description: teacher email
+      students:
+        type: array
+        description: add students
+        items:
+          $ref: '#/definitions/Teacher'
+    required:
+      - teacher
+      - students
+
+  Teachers:
+    description: Teachers object
+    properties:
+      teacher:
+        type: array
+        description: teacher email
+        items:
+          $ref: '#/definitions/Teacher'
+    required:
+      - teacher
+  
+  Student:
+    description: Student object
+    properties:
+      student:
+        type: string
+        description: student email
+        items:
+          $ref: '#/definitions/Student'
+    required:
+      - student   

@@ -1,0 +1,27 @@
+{
+  "name": "teacher-admin-apis",
+  "version": "1.0.1",
+  "description": "This is a set of endpoints for teachers to perform administrative functions for their classes.",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "author": "Rachel",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "connect": "^3.2.0",
+    "js-yaml": "^3.3.0",
+    "swagger-tools": "0.10.1",
+    "async": "^2.6.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mysql2": "^1.5.2",
+    "sequelize": "^4.33.4",
+    "swagger-ui": "^3.11.0"
+  }
+}
